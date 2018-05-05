@@ -1,0 +1,4 @@
+Alpha 1.0: 2018-05-05 16:34
+	- Starting another project, I should probably actually focus on one, but oh well
+	- This is going to help keep track of characters in DnD 5e
+	- I'm doing this because I am a DM who has way too many groups going simultaneously and need help keeping track of things
