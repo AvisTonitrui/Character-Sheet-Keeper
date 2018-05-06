@@ -13,9 +13,11 @@ while True:
 	print "3. Exit"
 	choice = raw_input("--->")
 
+	#organization management
 	if choice == "1":
 		pass
 
+	#character management
 	elif choice == "2":
 		pass
 

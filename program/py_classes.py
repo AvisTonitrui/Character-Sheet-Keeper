@@ -1,3 +1,6 @@
+#imports needed for the classes to work
+import os
+
 #These are the classes used
 
 class Player:
@@ -24,3 +27,32 @@ class Player:
 			crea()
 		else:
 			imp()
+
+class Organization:
+	
+	#intializing the class
+	def __init__(self, name, new):
+		#setting the name of the organization
+		self.name = name
+		
+		#creating the organization file structure if it is a new organization
+		if new:
+			#making the organization directory
+			os.makedirs(self.name)
+
+			#creating the players list
+			players_file = open(self.name + "/player_list.py", 'w')
+			players_file.write("#" + self.name + "'s players:")
+			players_file.close()
+
+			#adding to the organization master list
+			org_file = open("organization_master_list.txt", 'a')
+			org_file.write("\n" + self.name)
+			org_file.close()
+
+			#initializing the remaining variables
+			self.players = []
+
+		#initialization for an existing organization
+		else:
+			pass
