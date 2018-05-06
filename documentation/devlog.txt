@@ -1,3 +1,6 @@
+Alpha 1.1: 2018-05-05 22:31
+	- Made a basic menu
+
 Alpha 1.0: 2018-05-05 16:34
 	- Starting another project, I should probably actually focus on one, but oh well
 	- This is going to help keep track of characters in DnD 5e
