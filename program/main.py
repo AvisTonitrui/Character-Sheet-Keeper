@@ -28,3 +28,4 @@ while True:
 
 	else:
 		print "Sorry, didn't get that"
+		print ""

@@ -1,5 +1,6 @@
 #imports needed for the classes to work
 import os
+from py_functions import *
 
 #These are the classes used
 
@@ -33,7 +34,7 @@ class Organization:
 	#intializing the class
 	def __init__(self, name, new):
 		#setting the name of the organization
-		self.name = name
+		self.name = sanitize_string(name)
 		
 		#creating the organization file structure if it is a new organization
 		if new:
