@@ -1,3 +1,7 @@
+Alpha 1.5: 2018-05-10 23:17
+	- Added safety checks to creation of organizations
+	- Working on deletion of organizations, function just needs some testing
+
 Alpha 1.4: 2018-05-10 22:48
 	- Organizations can be created and listed
 
