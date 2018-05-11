@@ -48,7 +48,7 @@ class Organization:
 
 			#adding to the organization master list
 			org_file = open("organization_master_list.txt", 'a')
-			org_file.write("\n" + self.name)
+			org_file.write(self.name)
 			org_file.close()
 
 			#initializing the remaining variables
@@ -57,3 +57,11 @@ class Organization:
 		#initialization for an existing organization
 		else:
 			pass
+
+	#changing the organization's name
+	def name_change(self):
+		pass
+
+	#deleting the organization
+	def delete_org(self):
+		pass
