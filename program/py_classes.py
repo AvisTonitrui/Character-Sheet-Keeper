@@ -1,5 +1,6 @@
 #imports needed for the classes to work
 import os
+import shutil
 from py_functions import *
 
 #These are the classes used
@@ -34,7 +35,7 @@ class Organization:
 	#intializing the class
 	def __init__(self, name, new):
 		#setting the name of the organization
-		self.name = sanitize_string(name)
+		self.name = name
 		
 		#creating the organization file structure if it is a new organization
 		if new:
@@ -64,4 +65,31 @@ class Organization:
 
 	#deleting the organization
 	def delete_org(self):
-		pass
+		#removes the folder for the organization
+		shutil.rmtree("/" + self.name, ignore_errors = True)
+
+		#removes the name from the master list
+		#opens the file to read in order to get all the organizations
+		master_list = open("organization_master_list.txt", "r")
+		orgs = []
+
+		#getting rid of the newline characters
+		for line in master_list:
+			orgs.append(line.rstrip())
+
+		#closing and removing the file
+		master_list.close()
+		os.remove("organization_master_list.txt")
+
+		#removes the instance from this list
+		orgs.remove(self.name)
+
+		#writes the new set to the folder
+		master_list = open("organization_master_list.txt", "a")
+
+		for org in orgs:
+			master_list.write(org)
+
+		#closes the file
+		master_list.close()
+		

@@ -21,9 +21,11 @@ while True:
 		orgs_file = open("organization_master_list.txt", "r")
 		orgs = []
 
+		#getting rid of the newline characters
 		for line in orgs_file:
 			orgs.append(line.rstrip())
 		
+		#making sure to close the file
 		orgs_file.close()
 
 		#running the Organization menu
@@ -40,9 +42,40 @@ while True:
 
 			#creating an organization
 			if choice == "1":
-				name = raw_input("What is the name of this new organization: ")
-				current_org = Organization(name, True)
-				orgs.append(name)
+				#loop until a valid name is entered
+				while True:	
+					name = raw_input("What is the name of this new organization: ")
+					print ""
+					name = sanitize_string(name)
+					
+					#checking for duplicate org names
+					if name in orgs:
+						choice =  raw_input("Sorry, but " + name + " is already in use. Would you like to overwrite, try a different name, or cancel creation (o/d/c): ")
+						print ""
+						duplicate = True
+
+					else:
+						duplicate = False
+
+					#check choice if there was a duplicate
+					if duplicate:
+						#overwrites with new organization
+						if choice == "o":
+							current_org = Organization(name, False)
+							current_org.remove_org()
+							current_Org = Organization(name, True)
+
+						#cancels creation
+						elif choice == "c":
+							break
+
+					
+					else:
+						current_org = Organization(name, True)
+						orgs.append(name)
+						print "Organization " + name + " created! Returning to organization management."
+						print ""
+						break
 
 			#changing an org's name
 			elif choice == "2":
@@ -57,7 +90,7 @@ while True:
 
 			#deleting an organization
 			elif choice == "4":
-				pass
+				name = raw_input("Which organization would you like to delete: ")
 			
 			#go back to main menu
 			elif choice == "5":
