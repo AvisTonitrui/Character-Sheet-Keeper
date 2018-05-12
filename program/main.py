@@ -17,19 +17,20 @@ while True:
 
 	#organization management
 	if choice == "1":
-		#doing a little bit of prep for organization management
-		orgs_file = open("organization_master_list.txt", "r")
-		orgs = []
-
-		#getting rid of the newline characters
-		for line in orgs_file:
-			orgs.append(line.rstrip())
-		
-		#making sure to close the file
-		orgs_file.close()
-
 		#running the Organization menu
 		while True:
+
+			#refreshing the organization list
+			orgs_file = open("organization_master_list.txt", "r")
+			orgs = []
+
+			#getting rid of the newline characters
+			for line in orgs_file:
+				orgs.append(line.rstrip())
+		
+			#making sure to close the file
+			orgs_file.close()
+
 			print "<<Organization Management>>"
 			print "Please select the number of which action you would like to perform"
 			print "1. Create a new organization"
@@ -90,7 +91,22 @@ while True:
 
 			#deleting an organization
 			elif choice == "4":
-				name = raw_input("Which organization would you like to delete: ")
+				while True:
+					name = raw_input("Which organization would you like to delete: ")
+					print ""
+
+					if name in orgs:
+						current_org = Organization(name, False)
+						current_org.delete_org()
+						print ""
+						break
+					else:
+						again = raw_input("Sorry, " + name + " does not exist, would you like to try a different organization (y/n): ")
+					
+						if again.lower() != "y":
+							break
+						else:
+							print ""
 			
 			#go back to main menu
 			elif choice == "5":

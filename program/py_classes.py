@@ -36,6 +36,9 @@ class Organization:
 	def __init__(self, name, new):
 		#setting the name of the organization
 		self.name = name
+
+		#initializing the remaining variables
+		self.players = []
 		
 		#creating the organization file structure if it is a new organization
 		if new:
@@ -43,21 +46,31 @@ class Organization:
 			os.makedirs(self.name)
 
 			#creating the players list
-			players_file = open(self.name + "/player_list.py", 'w')
-			players_file.write("#" + self.name + "'s players:")
+			players_file = open(self.name + "/player_list.txt", 'w')
+			players_file.write("" + self.name + "'s players:")
 			players_file.close()
 
 			#adding to the organization master list
 			org_file = open("organization_master_list.txt", 'a')
-			org_file.write(self.name)
+			org_file.write(self.name + "\n")
 			org_file.close()
-
-			#initializing the remaining variables
-			self.players = []
 
 		#initialization for an existing organization
 		else:
-			pass
+			#get all the players from the file
+			players_file = open(self.name + "/player_list.txt", "r")
+
+			#add the players
+			for line in players_file:
+				if line[0] == "P":
+					self.player.append(line.strip())
+			
+			#closing the file
+			players_file.close()
+
+			#clean up the players list
+			for player in self.players:
+				line.replcae("P", "")
 
 	#changing the organization's name
 	def name_change(self):
@@ -66,7 +79,7 @@ class Organization:
 	#deleting the organization
 	def delete_org(self):
 		#removes the folder for the organization
-		shutil.rmtree("/" + self.name, ignore_errors = True)
+		shutil.rmtree(self.name, ignore_errors = True)
 
 		#removes the name from the master list
 		#opens the file to read in order to get all the organizations
@@ -88,8 +101,10 @@ class Organization:
 		master_list = open("organization_master_list.txt", "a")
 
 		for org in orgs:
-			master_list.write(org)
+			master_list.write(org + "\n")
 
 		#closes the file
 		master_list.close()
+
+		print "Organization " + self.name + " deleted."
 		

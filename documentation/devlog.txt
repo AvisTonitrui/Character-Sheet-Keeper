@@ -1,3 +1,6 @@
+Alpha 1.6: 2018-05-12 15:50
+	- Organizations can now be removed
+
 Alpha 1.5: 2018-05-10 23:17
 	- Added safety checks to creation of organizations
 	- Working on deletion of organizations, function just needs some testing
